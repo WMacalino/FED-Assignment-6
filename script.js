@@ -34,6 +34,12 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    function newPlayer() {
+        document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
+        document.getElementById("username").classList.remove("hidden");
+        document.getElementById("username").value = "";
+        document.getElementById("new-player").classList.add("hidden")
+    }
     /**
      * Fetches trivia questions from the API and displays them.
      */
@@ -154,7 +160,7 @@ document.addEventListener("DOMContentLoaded", function () {
             <tr>
                 <td>${scoreEntry.player}</td>
                 <td>${scoreEntry.score}</td>
-            <tr>`
+            </tr>`
             tableBody.innerHTML += row;
         })
         ;
@@ -181,6 +187,8 @@ document.addEventListener("DOMContentLoaded", function () {
         
         // Display score
         displayScores()
-        // TODO: Refresh game with new questions
+        
+        // Refresh game with new questions
+        fetchQuestions()
     }
 });
