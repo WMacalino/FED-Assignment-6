@@ -142,7 +142,23 @@ document.addEventListener("DOMContentLoaded", function () {
 
         localStorage.setItem("triviaScores", JSON.stringify(existingScores));
     }
-    
+
+    function displayScores() {
+        const existingScoresString = localStorage.getItem("triviaScores");
+        const existingScores = JSON.parse(existingScoresString) || [];
+        const tableBody = document.querySelector("#score-table tbody");
+        tableBody.innerHTML = "";
+
+        existingScores.forEach( (scoreEntry) => {
+            const row = `
+            <tr>
+                <td>${scoreEntry.player}</td>
+                <td>${scoreEntry.score}</td>
+            <tr>`
+            tableBody.innerHTML += row;
+        })
+        ;
+    }
     /**
      * Handles the trivia form submission.
      * @param {Event} event - The submit event.
@@ -163,6 +179,8 @@ document.addEventListener("DOMContentLoaded", function () {
         // Save score to localStorage
         saveScore(currentScore)
         
+        // Display score
+        displayScores()
         // TODO: Refresh game with new questions
     }
 });
