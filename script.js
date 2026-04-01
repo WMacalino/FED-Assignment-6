@@ -125,6 +125,14 @@ document.addEventListener("DOMContentLoaded", function () {
      */
     function handleFormSubmit(event) {
         event.preventDefault();
-        //... form submission logic including setting cookies and calculating score
+        const playerName = document.getElementById("username").value
+
+        if (playerName) {
+            setCookie("username", playerName)
+        }
+
+        // TODO: Calculate Score
+        // TODO: Save score to localStorage
+        // TODO: Refresh game with new questions
     }
 });
