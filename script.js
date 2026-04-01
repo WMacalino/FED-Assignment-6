@@ -132,6 +132,17 @@ document.addEventListener("DOMContentLoaded", function () {
         return score
     }
 
+    function saveScore(newScore) {
+        const existingScoresString = localStorage.getItem("triviaScores");
+        const existingScores = JSON.parse(existingScoresString) || [];
+        const currentPlayer = getCookie("username")
+        const scoreData = { player: currentPlayer, score: newScore};
+
+        existingScores.push(scoreData);
+
+        localStorage.setItem("triviaScores", JSON.stringify(existingScores));
+    }
+    
     /**
      * Handles the trivia form submission.
      * @param {Event} event - The submit event.
@@ -148,7 +159,10 @@ document.addEventListener("DOMContentLoaded", function () {
         // Calculate Score
         const currentScore = calculateScore()
         console.log(currentScore) 
-        // TODO: Save score to localStorage
+        
+        // Save score to localStorage
+        saveScore(currentScore)
+        
         // TODO: Refresh game with new questions
     }
 });
