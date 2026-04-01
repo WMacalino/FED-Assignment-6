@@ -11,6 +11,17 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchQuestions();
     displayScores();
 
+    const setCookie = (username, value) => {
+            document.cookie = `${username}=${value}; path=/`;
+        }
+        
+    const getCookie = (username) => {
+        return document.cookie
+            .split("; ")
+            .find((row) => row.startsWith(`${username}=`))
+            ?.split("=")[1];
+        }
+
     /**
      * Fetches trivia questions from the API and displays them.
      */
