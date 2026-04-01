@@ -119,6 +119,19 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
 
+    function calculateScore() {
+        let score = 0
+        const checkedAnswers = document.querySelectorAll('input[type="radio"]:checked')
+
+        checkedAnswers.forEach( (userAnswer) => {
+            if (userAnswer.dataset.correct === "true") {
+                score++;
+            }
+        });
+
+        return score
+    }
+
     /**
      * Handles the trivia form submission.
      * @param {Event} event - The submit event.
@@ -129,9 +142,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (playerName) {
             setCookie("username", playerName)
+            checkUsername()
         }
 
-        // TODO: Calculate Score
+        // Calculate Score
+        const currentScore = calculateScore()
+        console.log(currentScore) 
         // TODO: Save score to localStorage
         // TODO: Refresh game with new questions
     }
