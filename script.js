@@ -7,20 +7,32 @@ document.addEventListener("DOMContentLoaded", function () {
     const newPlayerButton = document.getElementById("new-player");
 
     // Initialize the game
-    // checkUsername(); Uncomment once completed
+    checkUsername();
     fetchQuestions();
     displayScores();
 
-    const setCookie = (username, value) => {
+    function setCookie(username, value) {
             document.cookie = `${username}=${value}; path=/`;
         }
         
-    const getCookie = (username) => {
+    function getCookie(username) {
         return document.cookie
             .split("; ")
             .find((row) => row.startsWith(`${username}=`))
             ?.split("=")[1];
         }
+    
+    function checkUsername() {
+        const savedName = getCookie("username")
+
+        if (savedName) {
+            const username_input = document.getElementById("username")
+            username_input.classList.add("hidden")
+            
+            const new_player = document.getElementById("new-player")
+            new_player.classList.remove("hidden")
+        }
+    }
 
     /**
      * Fetches trivia questions from the API and displays them.
