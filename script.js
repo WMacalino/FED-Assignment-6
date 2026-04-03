@@ -40,6 +40,7 @@ document.addEventListener("DOMContentLoaded", function () {
         document.getElementById("username").value = "";
         document.getElementById("new-player").classList.add("hidden")
     }
+
     /**
      * Fetches trivia questions from the API and displays them.
      */
@@ -162,9 +163,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 <td>${scoreEntry.score}</td>
             </tr>`
             tableBody.innerHTML += row;
-        })
-        ;
+        });
     }
+    
     /**
      * Handles the trivia form submission.
      * @param {Event} event - The submit event.
