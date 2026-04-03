@@ -21,6 +21,10 @@ document.addEventListener("DOMContentLoaded", function () {
             ?.split("=")[1];
         }
     
+    /**
+     * Checks for an existing username cookie and updates the UI accordingly.
+     * Hides the username input and shows the "New Player" button if a returning user is found.
+     */
     function checkUsername() {
         const savedName = getCookie("username")
 
@@ -33,6 +37,10 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
+    /**
+     * Clears the current session by expiring the username cookie and resets the UI
+     * to allow a new player to enter their name.
+     */
     function newPlayer() {
         document.cookie = "username=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;"
         document.getElementById("username").classList.remove("hidden");
@@ -124,6 +132,10 @@ document.addEventListener("DOMContentLoaded", function () {
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
 
+    /**
+     * Calculates the player's score by tallying the selected correct answers.
+     * @returns {number} The total number of correct answers.
+     */
     function calculateScore() {
         let score = 0
         const checkedAnswers = document.querySelectorAll('input[type="radio"]:checked')
@@ -137,6 +149,10 @@ document.addEventListener("DOMContentLoaded", function () {
         return score
     }
 
+    /**
+     * Saves the player's new score to localStorage alongside their username.
+     * @param {number} newScore - The score achieved in the current game.
+     */
     function saveScore(newScore) {
         const existingScoresString = localStorage.getItem("triviaScores");
         const existingScores = JSON.parse(existingScoresString) || [];
@@ -148,6 +164,10 @@ document.addEventListener("DOMContentLoaded", function () {
         localStorage.setItem("triviaScores", JSON.stringify(existingScores));
     }
 
+    /**
+     * Retrieves the array of saved scores from localStorage and dynamically 
+     * renders them into the score table.
+     */
     function displayScores() {
         const existingScoresString = localStorage.getItem("triviaScores");
         const existingScores = JSON.parse(existingScoresString) || [];
