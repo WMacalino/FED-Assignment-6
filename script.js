@@ -6,7 +6,6 @@ document.addEventListener("DOMContentLoaded", function () {
     const questionContainer = document.getElementById("question-container");
     const newPlayerButton = document.getElementById("new-player");
 
-    // Initialize the game
     checkUsername();
     fetchQuestions();
     displayScores();
@@ -51,11 +50,11 @@ document.addEventListener("DOMContentLoaded", function () {
             .then((response) => response.json())
             .then((data) => {
                 displayQuestions(data.results);
-                showLoading(false); // Hide loading state
+                showLoading(false);
             })
             .catch((error) => {
                 console.error("Error fetching questions:", error);
-                showLoading(false); // Hide loading state on error
+                showLoading(false);
             });
     }
 
@@ -78,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function () {
      * @param {Object[]} questions - Array of trivia questions.
      */
     function displayQuestions(questions) {
-        questionContainer.innerHTML = ""; // Clear existing questions
+        questionContainer.innerHTML = "";
         questions.forEach((question, index) => {
             const questionDiv = document.createElement("div");
             questionDiv.innerHTML = `
@@ -122,7 +121,6 @@ document.addEventListener("DOMContentLoaded", function () {
             .join("");
     }
 
-    // Event listeners for form submission and new player button
     form.addEventListener("submit", handleFormSubmit);
     newPlayerButton.addEventListener("click", newPlayer);
 
@@ -179,17 +177,11 @@ document.addEventListener("DOMContentLoaded", function () {
             checkUsername()
         }
 
-        // Calculate Score
         const currentScore = calculateScore()
         console.log(currentScore) 
         
-        // Save score to localStorage
         saveScore(currentScore)
-        
-        // Display score
         displayScores()
-        
-        // Refresh game with new questions
         fetchQuestions()
     }
 });
