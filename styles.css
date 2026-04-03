@@ -122,3 +122,21 @@ button {
     padding: 0.75rem;
     text-align: left;
 }
+
+#score-table tbody tr:hover {
+    background-color: #e0e0e0;
+    transition: background-color 0.2s ease;
+}
+
+#question-container label:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.2s ease;
+}
+
+#question-container label {
+    display: block;
+    padding: 8px;
+    margin: 4px 0;
+}
